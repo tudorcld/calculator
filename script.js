@@ -44,7 +44,7 @@ function operate() {
     case "-":
       subtract(a, b);
       break;
-    case "*":
+    case "x":
       multiply(a, b);
       break;
     case "/":
@@ -68,7 +68,7 @@ function pop(val) {
     }
     input.value += val;
   }
-  if (val == "/" || val == "*" || val == "+" || val == "-") {
+  if (val == "/" || val == "x" || val == "+" || val == "-") {
     if (secondNumber === "") {
       operator = val;
       currentPhase = "second";
@@ -103,4 +103,17 @@ function del() {
   } else if (operator === "") {
     return;
   }
+}
+
+window.addEventListener("keydown", logKey)
+
+function logKey(e) {
+  if (e.key === "Backspace") {
+    del()
+  } else
+    if (e.key === "=") {
+      operate()
+    } else
+  pop(e.key)
+  console.log(` ${e.code}`)
 }
